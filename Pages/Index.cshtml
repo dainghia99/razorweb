@@ -1,0 +1,14 @@
+﻿@page
+@model IndexModel
+@using razorweb.Models
+@{
+    ViewData["Title"] = "Home page";
+    var posts = ViewData["Post"] as List<Article>;
+}
+
+<ol>
+    @foreach (var item in posts)
+    {
+        <li>@item.Title</li>
+    }
+</ol>
