@@ -5,7 +5,7 @@ using razorweb.Models;
 
 namespace razorweb.AppDbContext;
 
-public partial class BlogContext : DbContext
+public partial  class BlogContext : DbContext
 {
     public BlogContext()
     {

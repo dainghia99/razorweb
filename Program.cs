@@ -26,3 +26,5 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
+
+// dotnet aspnet-codegenerator razorpage -m razorweb.Models.Article -dc 

@@ -1,0 +1,66 @@
+@page
+@model razorweb.Pages_Blog.IndexModel
+
+@{
+    ViewData["Title"] = "Danh sách các bài viết";
+}
+
+
+
+@{
+    var pageModel = new razorweb.Helpers.PagingModel() {
+        curentPageSize = Model.curentPageSize,
+        countPageSize = Model.countPageSize,
+        generateUrl = (int? p) => Url.Page("/Blog/Index", new {p = 10})
+    };
+}
+
+<partial name="_Paging" model="@pageModel" />
+
+<h1>Danh sách các bài viết</h1>
+
+<form class="my-5" method="get" asp-page="./Index">
+    <label>Tìm kiếm</label>
+    <input name="searchString" value="">
+    <button type="submit">Tìm</button>
+</form>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Thêm mới bài viết</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Article[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Article[0].PublishDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Article[0].ContentArticle)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Article) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublishDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContentArticle)
+            </td>
+            <td>
+                <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@item.Id">Chỉnh sửa</a>
+                <a class="btn btn-primary" asp-page="./Details" asp-route-id="@item.Id">Chi tiết</a> 
+                <a class="btn btn-primary" asp-page="./Delete" asp-route-id="@item.Id">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

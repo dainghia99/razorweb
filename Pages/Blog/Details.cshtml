@@ -1,0 +1,37 @@
+@page
+@model razorweb.Pages_Blog.DetailsModel
+
+@{
+    ViewData["Title"] = @Model.Article.Title;
+}
+
+<h1>@Model.Article.Title</h1>
+
+<div>
+    <h4>Bài biết</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Article.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Article.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Article.PublishDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Article.PublishDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Article.ContentArticle)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Article.ContentArticle)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@Model.Article?.Id">Edit</a> 
+    <a asp-page="./Index">Quay lại trang trước</a>
+</div>

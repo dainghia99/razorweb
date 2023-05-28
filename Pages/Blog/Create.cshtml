@@ -1,0 +1,41 @@
+@page
+@model razorweb.Pages_Blog.CreateModel
+
+@{
+    ViewData["Title"] = "Thêm mới bài viết";
+}
+
+<h1>Thêm mới bài viết</h1>
+
+<h4>Article</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Article.Title" class="control-label"></label>
+                <input asp-for="Article.Title" class="form-control" />
+                <span asp-validation-for="Article.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Article.PublishDate" class="control-label"></label>
+                <input asp-for="Article.PublishDate" class="form-control" />
+                <span asp-validation-for="Article.PublishDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Article.ContentArticle" class="control-label"></label>
+                <textarea asp-for="Article.ContentArticle" class="form-control"></textarea>
+                <span asp-validation-for="Article.ContentArticle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Tạo mới" class="btn btn-primary my-3" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Quay lại trang trước</a>
+</div>
+
