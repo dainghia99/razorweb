@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using razorweb.Models;
 
-namespace razorweb.AppDbContext;
-
-public partial  class BlogContext : DbContext
+namespace razorweb.AppDbContext {
+    public partial  class BlogContext : IdentityDbContext<AppUser>
 {
     public BlogContext()
     {
@@ -34,8 +34,20 @@ public partial  class BlogContext : DbContext
             entity.Property(e => e.Title).HasMaxLength(500);
         });
 
+        base.OnModelCreating(modelBuilder); // Phải có trường này mới có thể add migrations 
+
         OnModelCreatingPartial(modelBuilder);
+
+        // Xóa tiền tố AspNet Khỏi các bảng
+        foreach (var entity in modelBuilder.Model.GetEntityTypes()) {
+            var tableName = entity.GetTableName();
+            if (tableName.StartsWith("AspNet")) {
+                entity.SetTableName(tableName.Substring(6));
+            }
+        }
+
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+    }
 }
